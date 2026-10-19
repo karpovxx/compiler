@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Онлайн-компилятор C в ТАК</title>
+    <!-- Стили подключаются отдельно -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Оптимизирующий компилятор C</h1>
+        <p>Лексический анализ, AST, генерация ТАК и оптимизации (в браузере)</p>
+    </header>
+
+    <div class="main-container">
+        <div class="column">
+            <div class="panel">
+                <h3>Исходный код (C)</h3>
+                <textarea id="sourceCode">int a = 2 + 3 * 4;
+int b = a + 0;
+int c = b;</textarea>
+                <button onclick="compile()">Скомпилировать</button>
+            </div>
+            <div class="panel">
+                <h3>Дерево программы (AST)</h3>
+                <pre id="astOutput">Здесь появится дерево...</pre>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="panel">
+                <h3>ТАК до оптимизации</h3>
+                <pre id="tacBefore">...</pre>
+            </div>
+            <div class="panel">
+                <h3>ТАК после оптимизации</h3>
+                <pre id="tacAfter" class="highlight">...</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Скрипт подключается отдельно -->
+    <script src="script.js"></script>
+</body>
+</html>
