@@ -2,7 +2,7 @@
 #include <stdexcept>
 using namespace std;
 
-Parser::Parser(vector<Token> t) : tokens(std::move(t)) {}
+Parser::Parser(vector<Token> t) : tokens(move(t)) {}
 
 bool Parser::match(TokenType type, const string& val) {
     if (peek().type == type && (val.empty() || peek().value == val)) {
@@ -15,19 +15,33 @@ void Parser::expect(TokenType type, const string& val) {
     if (!match(type, val)) throw runtime_error("Syntax error at token: " + peek().value);
 }
 
-unique_ptr<ASTNode> Parser::parseProgram() {
-    return parseStatement();
+vector<unique_ptr<ASTNode>> Parser::parseProgram() {
+    vector<unique_ptr<ASTNode>> stmts;
+    while (peek().type != TokenType::END) {
+        stmts.push_back(parseStatement());
+    }
+    return stmts;
 }
 
 unique_ptr<ASTNode> Parser::parseStatement() {
     if (peek().type == TokenType::KEYWORD && peek().value == "if") {
         return parseIf();
     }
+
+    if (peek().type == TokenType::KEYWORD && peek().value == "int") {
+        consume();
+    }
+
+    if (peek().type != TokenType::IDENT) {
+        throw runtime_error("Expected variable name, got: " + peek().value);
+    }
     string varName = consume().value;
+    
     expect(TokenType::OPERATOR, "=");
     auto expr = parseExpression();
     expect(TokenType::SEMICOLON);
-    return make_unique<AssignNode>(varName, std::move(expr));
+    
+    return make_unique<AssignNode>(varName, move(expr));
 }
 
 unique_ptr<ASTNode> Parser::parseIf() {
@@ -58,7 +72,7 @@ unique_ptr<ASTNode> Parser::parseExpression() {
            peek().value == "<" || peek().value == ">")) {
         string op = consume().value;
         auto right = parseTerm();
-        left = make_unique<BinaryOpNode>(op, std::move(left), std::move(right));
+        left = make_unique<BinaryOpNode>(op, move(left), move(right));
     }
     return left;
 }
@@ -68,7 +82,7 @@ unique_ptr<ASTNode> Parser::parseTerm() {
     while (peek().type == TokenType::OPERATOR && (peek().value == "*" || peek().value == "/")) {
         string op = consume().value;
         auto right = parseFactor();
-        left = make_unique<BinaryOpNode>(op, std::move(left), std::move(right));
+        left = make_unique<BinaryOpNode>(op, move(left), move(right));
     }
     return left;
 }

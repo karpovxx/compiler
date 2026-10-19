@@ -1,0 +1,3 @@
+int unused = 999;
+int x = 2 + 2;
+int y = x * 5;
