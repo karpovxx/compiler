@@ -99,5 +99,63 @@ pre {
     white-space: pre-wrap;
 }
 
+ 
+footer {
+    margin-top: auto; /* Прижимает к низу */
+    width: 100%;
+    background-color: #252526; /* Как панели */
+    border-top: 1px solid #3c3c3c;
+    padding: 20px 0;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #858585;
+}
+
+.footer-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: #d4d4d4;
+}
+
+.footer-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background-color: #0e639c; /* Синий акцент */
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.footer-right {
+    color: #9cdcfe;
+}
+
+.footer-right strong {
+    color: #dcdcaa;
+}
+
+ 
+@media (max-width: 600px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
 .highlight { color: #b5cea8; border-color: #4ec9b0; }
 .error { color: #f44747; }

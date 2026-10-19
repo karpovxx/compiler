@@ -1,6 +1,3 @@
-// ==========================================
-// 1. ЛЕКСЕР (Разбивает текст на токены)
-// ==========================================
 function tokenize(source) {
     let tokens = [];
     let pos = 0;
@@ -36,9 +33,6 @@ function tokenize(source) {
     return tokens;
 }
 
-// ==========================================
-// 2. ПАРСЕР (Строит AST)
-// ==========================================
 let tokens = [];
 let pos = 0;
 
@@ -104,9 +98,6 @@ function printAST(node, indent = 0) {
     return "";
 }
 
-// ==========================================
-// 3. ГЕНЕРАТОР ТАК
-// ==========================================
 let tacCode = [];
 let tempCounter = 0;
 function newTemp() { return "t" + (++tempCounter); }
@@ -139,9 +130,6 @@ function printTAC(code) {
     }).join("\n");
 }
 
-// ==========================================
-// 4. ОПТИМИЗАТОР
-// ==========================================
 function optimizeTAC(code) {
     let constants = {};
     for (let inst of code) {
@@ -182,9 +170,6 @@ function optimizeTAC(code) {
     return code.filter((_, index) => used[index]);
 }
 
-// ==========================================
-// 5. ЗАПУСК
-// ==========================================
 function compile() {
     const source = document.getElementById("sourceCode").value;
     

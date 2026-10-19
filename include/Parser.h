@@ -1,6 +1,6 @@
 #pragma once
-#include "Lexer.h"
-#include "AST.h"
+#include "../include/Lexer.h"
+#include "../include/AST.h"
 #include <memory>
 #include <vector>
 

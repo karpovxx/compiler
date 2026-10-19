@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include "AST.h"
+#include "../include/AST.h"
 
 using namespace std;
 

@@ -1,0 +1,26 @@
+int a = 5 + 10
+int b = 20;
+
+
+int a = 2 + 3 * 4;
+int b = (2 + 3) * 4;
+int c = a + b;
+
+
+
+int start = 10;
+int dead_var = start * 2; 
+int end = start + 5;
+
+
+
+int a = 100;
+int b = 200;
+int c = a + b;
+int d = 50;
+
+
+
+int unused = 999;
+int x = 2 + 2;
+int y = x * 5;
